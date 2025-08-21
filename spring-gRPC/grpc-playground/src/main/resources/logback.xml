@@ -1,0 +1,19 @@
+<!-- http://dev.cs.ovgu.de/java/logback/manual/layouts.html -->
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [Thread-%thread] %-5level %cyan(%logger{36}): %m%n</pattern>
+        </encoder>
+    </appender>
+    <!-- Config for Async logging: the logging is deferred, may not logging when
+     JVM immediately exits before the async thread has time to flush.   -->
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="CONSOLE" />
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

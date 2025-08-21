@@ -1,0 +1,18 @@
+
+syntax = "proto3";
+
+// define the proto package name - tell protoc to generate code in this package
+// But in Java, also have to specify the full package name using option java_package
+package multifiles;
+// define the package name for generated class
+option java_package = "com.example.grpcplayground.models.multifiles";
+
+// generate multiple files for each message
+// separate Person.class(building block), PersonOrBuilder.class(interface),
+// PersonOuterClass.class(containing static methods for Person)
+option java_multiple_files = true;
+
+message Person {
+  string name = 1;
+  int32 age = 2;
+}

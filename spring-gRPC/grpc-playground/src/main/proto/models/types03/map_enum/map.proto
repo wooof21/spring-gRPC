@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package map_enum;
+
+option java_multiple_files = true;
+option java_package = "com.example.grpcplayground.models.types.map_enum";
+
+enum BodyStyle {
+  UNKNOWN = 0;
+  SEDAN = 1;
+  COUPE = 2;
+  SUV = 3;
+  TRUCK = 4;
+}
+
+message Car {
+  string make = 1;
+  string model = 2;
+  int32 year = 3;
+  BodyStyle body_style = 4;
+}
+
+message Dealer {
+  map<int32, Car> inventory = 1;
+}
+
+/*
+  For Map<Integer, List<Car>> in Java
+    - map<int32, repeated Car> inventory = 1; - wont work
+
+  Use:
+    message Cars {
+      repeated Car cars = 1;
+    }
+    message Dealer {
+      map<int32, Cars> inventory = 1;
+    }
+ */

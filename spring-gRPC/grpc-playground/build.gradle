@@ -1,0 +1,72 @@
+plugins {
+    id 'java'
+    id 'com.google.protobuf' version '0.9.4'   // protobuf plugin
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    grpcVersion = '1.72.0'
+    protocVersion = '3.25.5'
+    logbackVersion = '1.5.13'
+    jacksonVersion = '2.18.1'
+    tomcatAnnotationsVersion = '6.0.53'
+    junitVersion = '5.11.3'
+    lombokVersion = '1.18.32'
+    springBootVersion = '3.2.5'
+}
+
+dependencies {
+    // gRPC
+    implementation "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+
+    // necessary for Java 9+
+    compileOnly "org.apache.tomcat:annotations-api:${tomcatAnnotationsVersion}"
+
+    // Logging
+    implementation "ch.qos.logback:logback-classic:${logbackVersion}"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // Jackson
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+
+    // JUnit 5
+//    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+//    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+
+
+    //    testImplementation platform('org.junit:junit-bom:5.10.0')
+//    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testImplementation 'io.projectreactor:reactor-test'
+//    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protocVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}

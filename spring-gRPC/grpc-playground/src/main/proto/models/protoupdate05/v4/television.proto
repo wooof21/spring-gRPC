@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package protoupdate.v4;
+
+option java_multiple_files = true;
+option java_package = "com.example.grpcplayground.models.protoupdate.v4";
+
+/*
+  NO longer need model/year - remove it
+
+  Best practice:
+    - Use reserved keyword to reserve field numbers and names that are no longer used.
+
+ */
+message Television {
+  string brand = 1;
+
+  reserved 2;
+  reserved "year", "model";
+
+  Type type = 3;
+}
+
+enum Type {
+  HD = 0;
+  UHD = 1;
+  OLED = 2;
+}

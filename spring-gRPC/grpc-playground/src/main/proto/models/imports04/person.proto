@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package imports;
+
+import "models/imports04/common/address.proto";
+import "models/imports04/common/car.proto";
+
+option java_multiple_files = true;
+option java_package = "com.example.grpcplayground.models.imports";
+
+message Person {
+
+  string name = 1;
+  optional int32 age = 2;
+  // use the `package` defined in each proto file to access the model
+  // package imports.common;
+  imports.common.Address address = 3;
+  imports.common.Car car = 4;
+
+}

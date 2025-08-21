@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package protoupdate.v3;
+
+option java_multiple_files = true;
+option java_package = "com.example.grpcplayground.models.protoupdate.v3";
+
+message Television {
+  string brand = 1;
+  // change year to model
+  int32 model = 3;
+  Type type = 4;
+}
+
+enum Type {
+  HD = 0;
+  UHD = 1;
+  OLED = 2;
+}
