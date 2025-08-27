@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package communicationpatterns.unary06;
+
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "com.example.communicationpatterns";
+
+// request for checking balance of an account by account_number
+message BalanceCheckRequest {
+  int32 account_number = 1;
+}
+
+// response model for AccountBalance
+message AccountBalance {
+  int32 account_number = 1;
+  int32 balance = 2;
+}
+
+// List response model for AccountBalance
+message AllAccountsResponse {
+  repeated AccountBalance accounts = 1;
+}
+
+// request for withdrawing money from an account by account_number and amount
+message WithdrawRequest {
+  int32 account_number = 1;
+  int32 amount = 2;
+}
+
+// money response for withdraw request - a stream of money messages
+message Money {
+  int32 amount = 1;
+  optional int32 remaining_balance = 2;
+}
+
+// client streaming - stream of deposit requests
+// use `oneof` to set the account_number only once, then stream money messages
+// avoid repeating account_number in every deposit request
+message DepositRequest {
+  oneof request {
+    int32 account_number = 1;
+    Money money = 2;
+  }
+}
+
+// bidirectional streaming - stream of transfer requests and responses
+// transfer money from one account to another
+message TransferRequest {
+  int32 from_account = 1;
+  int32 to_account = 2;
+  int32 amount = 3;
+}
+
+enum TransferStatus {
+  REJECTED = 0;
+  COMPLETED = 1;
+}
+
+message TransferResponse {
+  TransferStatus status = 1;
+  AccountBalance from_account = 2;
+  AccountBalance to_account = 3;
+}
+
+// service definition
+service BankService {
+  /*
+    * unary
+     - GetAccountBalance & GetAllAccounts: expose the service methods
+     - method params: cannot use int32 account_number directly,
+        need to wrap it in a message (BalanceCheckRequest)
+   */
+  rpc GetAccountBalance(BalanceCheckRequest) returns (AccountBalance);
+  // gRPC methods always expect the request params to be a message type
+  // request params and response must also be a single message type
+  rpc GetAllAccounts(google.protobuf.Empty) returns (AllAccountsResponse);
+
+  /*
+    gRPC is action based, so use verbs to name the methods for CRUD operations
+
+      // POST/Create
+      rpc SaveAccountBalance(AccountBalance) returns (AccountBalance);
+      // PUT/Update
+      rpc UpdateAccountBalance(AccountBalance) returns (AccountBalance);
+      // Delete
+      rpc DeleteAccountBalance(BalanceCheckRequest) returns (google.protobuf.Empty);
+   */
+
+
+  // server streaming - `stream` response
+  rpc Withdraw(WithdrawRequest) returns (stream Money);
+
+  // client streaming - `stream` request
+  rpc Deposit(stream DepositRequest) returns (AccountBalance);
+
+}
+
+service TransferService {
+  // bidirectional streaming
+  rpc Transfer(stream TransferRequest) returns (stream TransferResponse);
+}
