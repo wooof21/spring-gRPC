@@ -1,8 +1,9 @@
-package com.example.communicationpatterns;
+package com.example.communicationpatterns06;
 
 import com.example.common.GrpcService;
-import com.example.communicationpatterns.repos.AccountRepo;
-import com.example.communicationpatterns.requesthandlers.DepositRequestHandler;
+import com.example.communicationpatterns.*;
+import com.example.communicationpatterns06.repos.AccountRepo;
+import com.example.communicationpatterns06.requesthandlers.DepositRequestHandler;
 import com.google.common.util.concurrent.Uninterruptibles;
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;

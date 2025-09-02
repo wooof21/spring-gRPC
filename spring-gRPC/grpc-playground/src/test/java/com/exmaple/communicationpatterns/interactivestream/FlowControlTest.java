@@ -1,8 +1,8 @@
 package com.exmaple.communicationpatterns.interactivestream;
 
 import com.example.common.GrpcServer;
-import com.example.communicationpatterns.interactivestream.FlowControlService;
 import com.example.communicationpatterns.interactivestream.FlowControlServiceGrpc;
+import com.example.communicationpatterns06.interactivestream.FlowControlService;
 import com.exmaple.common.AbstractChannelTest;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,6 +1,9 @@
-package com.example.communicationpatterns.interactivestream;
+package com.example.communicationpatterns06.interactivestream;
 
 import com.example.common.GrpcService;
+import com.example.communicationpatterns.interactivestream.FlowControlServiceGrpc;
+import com.example.communicationpatterns.interactivestream.Output;
+import com.example.communicationpatterns.interactivestream.RequestSize;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

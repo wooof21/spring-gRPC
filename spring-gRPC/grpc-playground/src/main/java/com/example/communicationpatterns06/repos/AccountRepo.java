@@ -1,4 +1,4 @@
-package com.example.communicationpatterns.repos;
+package com.example.communicationpatterns06.repos;
 
 
 import java.util.Collections;

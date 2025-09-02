@@ -1,8 +1,8 @@
-package com.example.communicationpatterns.requesthandlers;
+package com.example.communicationpatterns06.requesthandlers;
 
 import com.example.communicationpatterns.AccountBalance;
 import com.example.communicationpatterns.DepositRequest;
-import com.example.communicationpatterns.repos.AccountRepo;
+import com.example.communicationpatterns06.repos.AccountRepo;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 

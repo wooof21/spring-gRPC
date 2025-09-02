@@ -1,5 +1,8 @@
-package com.example.communicationpatterns;
+package com.example.communicationpatterns06;
 
+import com.example.communicationpatterns.AccountBalance;
+import com.example.communicationpatterns.BalanceCheckRequest;
+import com.example.communicationpatterns.BankServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
