@@ -5,7 +5,6 @@ import com.example.trailermetadata08.repository.AccountRepo;
 import com.example.trailermetadata08.validator.RequestValidator;
 import com.example.validationanderrorhandling.trailermetadata.*;
 import com.google.common.util.concurrent.Uninterruptibles;
-import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

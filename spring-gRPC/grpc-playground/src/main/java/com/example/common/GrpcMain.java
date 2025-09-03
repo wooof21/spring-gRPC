@@ -1,5 +1,6 @@
 package com.example.common;
 
+import com.example.communicationpatterns06.BankService;
 import io.grpc.BindableService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,6 +19,24 @@ public class GrpcMain {
             });
 
             GrpcServer.create(services.toArray(new BindableService[0]))
+                    .start()
+                    .await();
+        }
+    }
+
+
+
+    private static class BankInstance1 {
+        public static void main(String[] args) {
+            GrpcServer.create(6565, new BankService())
+                    .start()
+                    .await();
+        }
+    }
+
+    private static class BankInstance2 {
+        public static void main(String[] args) {
+            GrpcServer.create(7575, new BankService())
                     .start()
                     .await();
         }
