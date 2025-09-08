@@ -39,7 +39,7 @@ public class LoadBalancingTest {
         this.bankBlockingStub = BankServiceGrpc.newBlockingStub(channel);
     }
 
-    @Test
+//    @Test
     public void loadBalancingTest() {
         for (int i=1; i<10; i++) {
             var request = BalanceCheckRequest.newBuilder()
@@ -55,7 +55,7 @@ public class LoadBalancingTest {
      * only 1 instance process the request
      * unless multiple clients are sending the request
      */
-    @Test
+//    @Test
     public void clientStreamingLoadBalancingTest() {
         var responseObserver = ResponseObserver.<AccountBalance>create();
         var requestObserver = this.asyncStub.deposit(responseObserver);

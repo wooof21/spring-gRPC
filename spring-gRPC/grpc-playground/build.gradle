@@ -29,6 +29,9 @@ dependencies {
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
 
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation("org.apache.commons:commons-lang3:3.0")
+
     // necessary for Java 9+
     compileOnly "org.apache.tomcat:annotations-api:${tomcatAnnotationsVersion}"
 

@@ -5,6 +5,8 @@ import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.function.Consumer;
 
 @Slf4j
@@ -31,9 +33,18 @@ public class GrpcServer {
     }
 
     // create a grpc server with default port 6565 and services
-    public static GrpcServer create(BindableService... services){
+    public static GrpcServer create(BindableService... services) {
 
         return create(6565, services);
+    }
+
+    // create a grpc server with both services and interceptors
+    public static GrpcServer create(Collection<ServerInterceptor> interceptors,
+                                    BindableService... services) {
+        return create(6565, builder -> {
+            Arrays.asList(services).forEach(builder::addService);
+            interceptors.forEach(builder::intercept);
+        });
     }
 
     public static GrpcServer create(int port, BindableService... services) {
