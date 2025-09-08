@@ -58,6 +58,9 @@ public class GrpcServer {
 
     public static GrpcServer create(int port, Consumer<NettyServerBuilder> consumer) {
         var builder = ServerBuilder.forPort(port);
+        // config tls here if needed
+//        var builder = NettyServerBuilder.forPort(port);
+//        builder.sslContext()
         consumer.accept((NettyServerBuilder) builder);
         return new GrpcServer(builder.build());
     }
