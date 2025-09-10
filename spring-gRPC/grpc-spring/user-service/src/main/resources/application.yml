@@ -1,0 +1,29 @@
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb    # In-memory database
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update          # auto-create tables
+    show-sql: true              # log SQL queries
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+  h2:
+    console:
+      enabled: true             # Enables H2 web console
+      path: /h2-console         # URL: http://localhost:8080/h2-console
+
+
+grpc:
+  server:
+    port: 6565
+
+server:
+    port: 8081

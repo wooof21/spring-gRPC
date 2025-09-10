@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package trader;
+
+import "common/common.proto";
+
+option java_multiple_files = true;
+option java_package = "com.trading.trader";
+
+message TraderInformationRequest{
+  int32 trader_id = 1;
+}
+
+message TraderInformation {
+  int32 trader_id = 1;
+  string name = 2;
+  int32 balance = 3;
+  repeated Holding holdings = 4;
+}
+
+message Holding {
+  common.Stock stock = 1;
+  int32 quantity = 2;
+}
+
+enum TradeAction {
+  BUY = 0;
+  SELL = 1;
+}
+
+message StockTradeRequest {
+  int32 trader_id = 1;
+  common.Stock stock = 2;
+  int32 price = 3;
+  int32 quantity = 4;
+  TradeAction action = 5;
+}
+
+message StockTradeResponse {
+  int32 trader_id = 1;
+  common.Stock stock = 2;
+  int32 price = 3;
+  int32 quantity = 4;
+  TradeAction action = 5;
+  int32 total_price = 6;
+  int32 balance = 7;
+}
+
+service TraderService {
+
+  rpc GetTraderInformation(TraderInformationRequest) returns (TraderInformation);
+
+  rpc TradeStock(StockTradeRequest) returns (StockTradeResponse);
+
+}

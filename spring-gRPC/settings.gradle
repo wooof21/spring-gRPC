@@ -1,3 +1,8 @@
 rootProject.name = 'spring-gRPC'
 
 include 'grpc-playground'
+include 'grpc-spring'
+include 'grpc-spring:proto'
+include 'grpc-spring:user-service'
+include 'grpc-spring:aggregator-service'
+include 'grpc-spring:stock-service'
