@@ -1,7 +1,7 @@
-package com.trading.aggregator;
+package com.trading.aggregator.v2;
 
-import com.trading.aggregator.mockservice.StockMockService;
-import com.trading.aggregator.mockservice.TraderMockService;
+import com.trading.aggregator.v2.mockservice.StockMockService;
+import com.trading.aggregator.v2.mockservice.TraderMockService;
 import com.trading.common.Stock;
 import com.trading.trader.StockTradeRequest;
 import com.trading.trader.StockTradeResponse;

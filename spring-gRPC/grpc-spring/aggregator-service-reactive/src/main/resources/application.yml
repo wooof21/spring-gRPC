@@ -1,0 +1,9 @@
+
+grpc:
+  client:
+    trader-service:
+        address: "static://localhost:6565"
+        negotiationType: PLAINTEXT
+    stock-service:
+        address: "static://localhost:8082"
+        negotiationType: PLAINTEXT

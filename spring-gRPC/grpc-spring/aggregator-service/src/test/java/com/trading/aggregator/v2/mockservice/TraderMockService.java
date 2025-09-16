@@ -1,4 +1,4 @@
-package com.trading.aggregator.mockservice;
+package com.trading.aggregator.v2.mockservice;
 
 import com.trading.trader.*;
 import io.grpc.Status;

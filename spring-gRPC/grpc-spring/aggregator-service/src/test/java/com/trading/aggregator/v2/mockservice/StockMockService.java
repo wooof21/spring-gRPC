@@ -1,4 +1,4 @@
-package com.trading.aggregator.mockservice;
+package com.trading.aggregator.v2.mockservice;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import com.google.protobuf.Empty;

@@ -1,7 +1,7 @@
-package com.trading.aggregator;
+package com.trading.aggregator.v2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trading.aggregator.mockservice.StockMockService;
+import com.trading.aggregator.v2.mockservice.StockMockService;
 import com.trading.aggregator.model.PriceUpdateModel;
 import com.trading.common.Stock;
 import net.devh.boot.grpc.server.service.GrpcService;
